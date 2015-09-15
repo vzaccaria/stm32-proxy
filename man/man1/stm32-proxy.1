@@ -1,0 +1,48 @@
+.TH "" "" "" "" ""
+.SH stm32\-proxy
+.RS
+.PP
+No name given yet
+.RE
+.SS Install
+.PP
+Install it with
+.IP
+.nf
+\f[C]
+npm\ install\ stm32\-proxy
+\f[]
+.fi
+.SS Usage
+.IP
+.nf
+\f[C]
+Usage:
+\ \ \ \ stm32\-proxy\ PROTO\ [\ \-p\ PORT\ ]\ [\ \-t\ ]
+\ \ \ \ stm32\-proxy\ (\ \-h\ |\ \-\-help\ )
+
+Options:
+\ \ \ \ \-h,\ \-\-help\ \ \ \ \ \ \ \ \ \ \ \ \ \ help\ for\ stm32\-proxy
+\ \ \ \ \-p,\ \-\-port\ PORT\ \ \ \ \ \ \ \ \ port\ to\ use\ to\ connect\ to\ the\ stm32
+\ \ \ \ \-t,\ \-\-test\ \ \ \ \ \ \ \ \ \ \ \ \ \ sanity\ check\ without\ connecting\ to\ port
+
+Arguments:
+\ \ \ \ PROTO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prototype\ file
+\f[]
+.fi
+.SS Author
+.IP \[bu] 2
+Vittorio Zaccaria
+.SS License
+.PP
+Released under the BSD License.
+.PP
+   *   *   *   *   *
+.SH New features
+.IP \[bu] 2
+use js\-csp for channels, parse header and packet size \-\- Sep 15th
+15 (../../commit/34c09e9786c5482e000ac129e88025e24e043912)
+.SH Changes to the build process
+.IP \[bu] 2
+initial commit \-\- Sep 15th
+15 (../../commit/f239fb4e996c83f4988435bd349cb5447fc7a231)
