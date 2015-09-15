@@ -7,6 +7,8 @@ var {
     go, chan, put, take
 } = require('js-csp')
 
+var debug = require('debug')('index')
+
 // var util = require('util')
 // var hex = require('hex')
 
@@ -20,24 +22,46 @@ var getOptions = doc => {
     var help = $o('-h', '--help', false, o)
     var proto = o.PROTO
     var port = $o('-p', '--port', '/dev/cu.usbmodemfd123', o)
+    var test = $o('-t', '--test', false, o)
     return {
-        help, port, proto
+        help, port, proto, test
     }
+}
+
+function* readSize(chan) {
+    var s = 0
+    s = s * 256 + (yield take(chan)).data
+    s = s * 256 + (yield take(chan)).data
+    s = s * 256 + (yield take(chan)).data
+    s = s * 256 + (yield take(chan)).data
+    debug(`computed ${s}`)
+    return s
 }
 
 function* dataConsumer(chan) {
-    while (true) {
-        var dt = yield take(chan)
-        console.log(JSON.stringify(dt, 0, 4));
+    debug(`dataConsumer started`);
+    var prev = yield take(chan)
+    var cur = yield take(chan)
+    for (;;) {
+        while (cur.data !== 90 || prev.data !== 86) {
+            debug(JSON.stringify(cur, 0, 4));
+            prev = cur;
+            cur = yield take(chan)
+        }
+        var s = yield* readSize(chan)
+        debug(`read header size ${s}`)
+        process.exit(0)
     }
 }
 
-function putDataOnChan(chan, data) {
-    _.forEach(data.toString('ascii'), it => {
-        put(chan, {
-            data: it
+
+
+function* putDataOnChan(chan, data) {
+    for (var i = 0; i < data.length; i++) {
+        yield put(chan, {
+            data: data[i]
         })
-    })
+    }
 }
 
 function registerSerialListener(port, rate, f) {
@@ -52,27 +76,29 @@ function registerSerialListener(port, rate, f) {
 
 function startCSP() {
     var innerChan = chan()
-    go(dataConsumer(innerChan))
+    go(dataConsumer, [innerChan])
     return innerChan;
 }
 
 var main = () => {
     $f.readLocal('docs/usage.md').then(it => {
         var {
-            help, port, proto
+            help, port, test
         } = getOptions(it);
         if (help) {
             console.log(it)
         } else {
+            var innerChan = startCSP();
             if (!test) {
-                var innerChan = startCSP();
                 registerSerialListener(port, 9600, (data) => {
-                    putDataOnChan(innerChan, data)
+                    go(putDataOnChan, [innerChan, data])
                 })
             } else {
-                var buf = new Buffer(10);
-                buf.write("abcdefghj", 0, "ascii");
-                putDataOnChan(innerChan, buf);
+                //                       V   Z  s1 s2 s3 s4  payload
+                var tstData = [0, 0, 0, 86, 90, 0, 0, 0, 3, 11, 12, 13]
+                var buf = new Buffer(tstData);
+                debug(`Start test`);
+                go(putDataOnChan, [innerChan, buf]);
             }
         }
     })

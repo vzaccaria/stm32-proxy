@@ -26,8 +26,9 @@ generateProject(_ => {
         _.collect("build", _ => {
             _.babel("src/*.js")
         })
-        _.cmd("((echo '#!/usr/bin/env node') && cat ./lib/index.js) > index.js", "./lib/index.js")
+        _.cmd("((echo '#!/usr/bin/env node --harmony') && cat ./lib/index.js) > index.js", "./lib/index.js")
         _.cmd("chmod +x ./index.js")
+        _.cmd("DEBUG=* DEBUG_COLORS=false ./index.js pippo -t");
     })
 
     _.collect("test", _ => {

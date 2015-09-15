@@ -22,7 +22,9 @@
   "homepage": "https://github.com/vzaccaria/stm32-proxy",
   "dependencies": {
     "babel-runtime": "^5.8.24",
+    "debug": "^2.2.0",
     "hex": "^0.1.0",
+    "js-csp": "^0.5.0",
     "serialport": "^1.7.4",
     "zaccaria-cli": "*"
   },
