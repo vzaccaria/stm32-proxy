@@ -1,0 +1,41 @@
+{
+  "name": "stm32-proxy",
+  "version": "0.0.1",
+  "description": "No name given yet",
+  "main": "index.js",
+  "bin": {
+    "stm32-proxy": "./index.js"
+  },
+  "man": "./man/man1/stm32-proxy.1",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vzaccaria/stm32-proxy.git"
+  },
+  "author": "Vittorio Zaccaria",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/vzaccaria/stm32-proxy/issues"
+  },
+  "homepage": "https://github.com/vzaccaria/stm32-proxy",
+  "dependencies": {
+    "babel-runtime": "^5.8.24",
+    "hex": "^0.1.0",
+    "serialport": "^1.7.4",
+    "zaccaria-cli": "*"
+  },
+  "devDependencies": {
+    "diy-build": "^1.0.8",
+    "babel": "^4.7.16",
+    "shelljs": "*",
+    "xyz": "*",
+    "mocha": "*",
+    "chai": "*",
+    "chai-as-promised": "*",
+    "mustache": "~2.1.2",
+    "stupid-replace": "~0.0.3",
+    "git-hist": "*"
+  }
+}
