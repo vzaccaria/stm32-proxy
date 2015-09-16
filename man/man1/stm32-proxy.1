@@ -2,8 +2,13 @@
 .SH stm32\-proxy
 .RS
 .PP
-No name given yet
+A supersimple POST request proxy for STM32L0.
 .RE
+.SS What is it
+.PP
+It proxies requests coming from an STM Nucleo Board to the net via USB.
+Requests from the board must be encoded through a protobuf and sent over
+the serial port.
 .SS Install
 .PP
 Install it with
@@ -14,22 +19,15 @@ npm\ install\ stm32\-proxy
 \f[]
 .fi
 .SS Usage
-.IP
-.nf
-\f[C]
-Usage:
-\ \ \ \ stm32\-proxy\ PROTO\ [\ \-p\ PORT\ ]\ [\ \-t\ ]
-\ \ \ \ stm32\-proxy\ (\ \-h\ |\ \-\-help\ )
-
-Options:
-\ \ \ \ \-h,\ \-\-help\ \ \ \ \ \ \ \ \ \ \ \ \ \ help\ for\ stm32\-proxy
-\ \ \ \ \-p,\ \-\-port\ PORT\ \ \ \ \ \ \ \ \ port\ to\ use\ to\ connect\ to\ the\ stm32
-\ \ \ \ \-t,\ \-\-test\ \ \ \ \ \ \ \ \ \ \ \ \ \ sanity\ check\ without\ connecting\ to\ port
-
-Arguments:
-\ \ \ \ PROTO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prototype\ file
-\f[]
-.fi
+.PP
+Usage: stm32\-proxy PROTO [ \-p PORT ] [ \-t ] stm32\-proxy ( \-h |
+\-\-help )
+.PP
+Options: \-h, \-\-help help for stm32\-proxy \-p, \-\-port PORT port to
+use to connect to the stm32 \-t, \-\-test sanity check without
+connecting to port
+.PP
+Arguments: PROTO prototype file
 .SS Author
 .IP \[bu] 2
 Vittorio Zaccaria
@@ -42,7 +40,14 @@ Released under the BSD License.
 .IP \[bu] 2
 use js\-csp for channels, parse header and packet size \-\- Sep 15th
 15 (../../commit/34c09e9786c5482e000ac129e88025e24e043912)
+.SH Bug fixes
+.IP \[bu] 2
+add protobuf library to the mix \-\- Sep 16th
+15 (../../commit/629abcb7caf00f370c9bd04a3ae7441128588c92)
 .SH Changes to the build process
+.IP \[bu] 2
+update docs \-\- Sep 16th
+15 (../../commit/04e1128bd4f6e5a23dbd2507b970af7a90f4991f)
 .IP \[bu] 2
 initial commit \-\- Sep 15th
 15 (../../commit/f239fb4e996c83f4988435bd349cb5447fc7a231)
