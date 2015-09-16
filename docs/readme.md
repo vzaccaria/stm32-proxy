@@ -20,7 +20,9 @@ Install it with
 Usage
 -----
 
+```
 ~USAGE~
+```
 
 Author
 ------
