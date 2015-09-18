@@ -1,6 +1,6 @@
 {
   "name": "stm32-proxy",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A supersimple POST request proxy for STM32L0.",
   "main": "index.js",
   "bin": {
