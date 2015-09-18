@@ -1,6 +1,7 @@
 
 # New features
 
+-     add processing plugins -- [Sep 18th 15](../../commit/2f21fab89768fa8a432d42172b95c3e2ea56a6d9)
 -     use js-csp for channels, parse header and packet size -- [Sep 15th 15](../../commit/34c09e9786c5482e000ac129e88025e24e043912)
 
 # Bug fixes

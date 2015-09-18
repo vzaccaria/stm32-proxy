@@ -20,18 +20,21 @@ Install it with
 Usage
 -----
 
+```
 Usage:
-    stm32-proxy PROTO [ -p PORT ] [ -t ]
+    stm32-proxy PROTO [ -p PORT ] [ -g PLUGIN ]
     stm32-proxy ( -h | --help )
 
 Options:
     -h, --help              help for stm32-proxy
     -p, --port PORT         port to use to connect to the stm32
-    -t, --test              sanity check without connecting to port
+    -g, --plugin PLUGIN     javascript plugin (implements init() and process(data))
+
 
 Arguments:
     PROTO                   prototype file
 
+```
 
 Author
 ------
@@ -48,6 +51,7 @@ Released under the BSD License.
 
 # New features
 
+-     add processing plugins -- [Sep 18th 15](../../commit/2f21fab89768fa8a432d42172b95c3e2ea56a6d9)
 -     use js-csp for channels, parse header and packet size -- [Sep 15th 15](../../commit/34c09e9786c5482e000ac129e88025e24e043912)
 
 # Bug fixes

@@ -19,15 +19,23 @@ npm\ install\ stm32\-proxy
 \f[]
 .fi
 .SS Usage
-.PP
-Usage: stm32\-proxy PROTO [ \-p PORT ] [ \-t ] stm32\-proxy ( \-h |
-\-\-help )
-.PP
-Options: \-h, \-\-help help for stm32\-proxy \-p, \-\-port PORT port to
-use to connect to the stm32 \-t, \-\-test sanity check without
-connecting to port
-.PP
-Arguments: PROTO prototype file
+.IP
+.nf
+\f[C]
+Usage:
+\ \ \ \ stm32\-proxy\ PROTO\ [\ \-p\ PORT\ ]\ [\ \-g\ PLUGIN\ ]
+\ \ \ \ stm32\-proxy\ (\ \-h\ |\ \-\-help\ )
+
+Options:
+\ \ \ \ \-h,\ \-\-help\ \ \ \ \ \ \ \ \ \ \ \ \ \ help\ for\ stm32\-proxy
+\ \ \ \ \-p,\ \-\-port\ PORT\ \ \ \ \ \ \ \ \ port\ to\ use\ to\ connect\ to\ the\ stm32
+\ \ \ \ \-g,\ \-\-plugin\ PLUGIN\ \ \ \ \ javascript\ plugin\ (implements\ init()\ and\ process(data))
+
+
+Arguments:
+\ \ \ \ PROTO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prototype\ file
+\f[]
+.fi
 .SS Author
 .IP \[bu] 2
 Vittorio Zaccaria
@@ -37,6 +45,9 @@ Released under the BSD License.
 .PP
    *   *   *   *   *
 .SH New features
+.IP \[bu] 2
+add processing plugins \-\- Sep 18th
+15 (../../commit/2f21fab89768fa8a432d42172b95c3e2ea56a6d9)
 .IP \[bu] 2
 use js\-csp for channels, parse header and packet size \-\- Sep 15th
 15 (../../commit/34c09e9786c5482e000ac129e88025e24e043912)

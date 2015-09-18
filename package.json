@@ -7,9 +7,6 @@
     "stm32-proxy": "./index.js"
   },
   "man": "./man/man1/stm32-proxy.1",
-  "scripts": {
-    "test": "make test"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/vzaccaria/stm32-proxy.git"

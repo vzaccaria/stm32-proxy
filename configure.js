@@ -28,7 +28,6 @@ generateProject(_ => {
         })
         _.cmd("((echo '#!/usr/bin/env node --harmony') && cat ./lib/index.js) > index.js", "./lib/index.js")
         _.cmd("chmod +x ./index.js")
-        _.cmd("DEBUG=* DEBUG_COLORS=false ./index.js /Users/zaccaria/development/github/stm32l053/example2/proto/message.proto -p /dev/cu.usbmodemfa133");
     })
 
     _.collect("test", _ => {
