@@ -26,10 +26,9 @@ var getOptions = doc => {
     var help = $o('-h', '--help', false, o)
     var proto = o.PROTO
     var port = $o('-p', '--port', '/dev/cu.usbmodemfd123', o)
-    var test = $o('-t', '--test', false, o)
     var plugin = $o('-g', '--plugin', undefined, o)
     return {
-        help, port, proto, test, plugin
+        help, port, proto, plugin
     }
 }
 
@@ -70,7 +69,7 @@ function* dataConsumer(chan, builder, plugin) {
             buf.writeByte(read, i)
         }
         var msg = pct.decode(buf)
-        if(!_.isUndefined(plugin)) {
+        if (!_.isUndefined(plugin)) {
             plugin.process(msg)
         }
         debug("msg = " + JSON.stringify(msg));
@@ -101,7 +100,7 @@ function registerSerialListener(port, rate, f) {
 
 function startCSP(builder, plugin) {
     var innerChan = chan()
-    if(!_.isUndefined(plugin)) {
+    if (!_.isUndefined(plugin)) {
         plugin.init()
     }
     go(dataConsumer, [innerChan, builder, plugin])
@@ -111,27 +110,19 @@ function startCSP(builder, plugin) {
 var main = () => {
     $f.readLocal('docs/usage.md').then(it => {
         var {
-            help, port, test, proto, plugin
+            help, port, proto, plugin
         } = getOptions(it);
         if (help) {
             console.log(it)
         } else {
             pb.loadProtoFileAsync(proto).then((builder) => {
-                if(!_.isUndefined(plugin)) {
+                if (!_.isUndefined(plugin)) {
                     plugin = require(plugin)
                 }
                 var innerChan = startCSP(builder, plugin);
-                if (!test) {
-                    registerSerialListener(port, 9600, (data) => {
-                        go(putDataOnChan, [innerChan, data])
-                    })
-                } else {
-                    //                       V   Z  s1 s2 s3 s4  payload
-                    var tstData = [0, 0, 0, 86, 90, 0, 0, 0, 3, 11, 12, 13]
-                    var buf = new Buffer(tstData);
-                    debug(`Start test`);
-                    go(putDataOnChan, [innerChan, buf]);
-                }
+                registerSerialListener(port, 9600, (data) => {
+                    go(putDataOnChan, [innerChan, data])
+                })
             })
         }
     })

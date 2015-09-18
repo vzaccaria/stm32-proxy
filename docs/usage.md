@@ -1,5 +1,6 @@
 Usage:
     stm32-proxy PROTO [ -p PORT ] [ -g PLUGIN ]
+    stm32-proxy -t
     stm32-proxy ( -h | --help )
 
 Options:
