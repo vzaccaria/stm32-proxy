@@ -1,0 +1,12 @@
+{
+    "libs": [
+        "ecma6"
+    ],
+    "plugins": {
+        "requirejs": {
+            "baseURL": "./",
+            "paths": {}
+        },
+        "node": {}
+    }
+}
